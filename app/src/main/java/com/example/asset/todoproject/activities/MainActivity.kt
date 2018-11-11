@@ -1,7 +1,8 @@
-package com.example.asset.todoproject
+package com.example.asset.todoproject.activities
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import com.example.asset.todoproject.R
 
 class MainActivity : AppCompatActivity() {
 
