@@ -31,8 +31,7 @@ class RegistrationActivity : AppCompatActivity(), RegistrationContract.View {
         }
 
         register.setOnClickListener {
-            val user = User(username.editText!!.text.toString(),
-                    password.editText!!.text.toString(),
+            val user = User(password.editText!!.text.toString(),
                     email.editText!!.text.toString(), null)
             presenter.register(user)
         }

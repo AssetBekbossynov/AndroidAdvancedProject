@@ -32,32 +32,13 @@
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
-        android:id="@+id/username"
-        android:layout_height="60dp"
-        android:layout_width="0dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintTop_toBottomOf="@id/email"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-        <EditText
-            android:id="@+id/etUsername"
-            android:backgroundTint="@color/black"
-            android:textColorHint="@color/black"
-            android:hint="Username"
-            android:layout_height="match_parent"
-            android:layout_width="match_parent"/>
-    </android.support.design.widget.TextInputLayout>
-
-    <android.support.design.widget.TextInputLayout
         android:id="@+id/password"
         android:layout_height="60dp"
         android:layout_width="0dp"
         android:layout_marginEnd="32dp"
         android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
-        app:layout_constraintTop_toBottomOf="@id/username"
+        app:layout_constraintTop_toBottomOf="@id/email"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
         <EditText
