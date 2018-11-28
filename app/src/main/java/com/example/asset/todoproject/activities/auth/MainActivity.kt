@@ -37,8 +37,8 @@ class MainActivity : AppCompatActivity(), MainContract.View {
 
     override fun onLogSuccess(user: FirebaseUser) {
         currentUser = user
-        Logger.msg("user " + currentUser)
         val intent = Intent(this, AppActivity::class.java)
+        intent.putExtra("userId", user.uid)
         startActivity(intent)
     }
 
