@@ -38,4 +38,18 @@ class AddTodoPresenter(override var view: AddTodoContract.View?) : AddTodoContra
             }
         })
     }
+
+    override fun edit(todo: Todo, position: Int) {
+        if (position == -1){
+            view?.onEditError("invalid TODO")
+        }else{
+            ref.child(todo.userId).child(position.toString()).removeValue()
+            ref.child(todo.userId).child(position.toString()).setValue(todo, object : DatabaseReference.CompletionListener{
+                override fun onComplete(p0: DatabaseError?, p1: DatabaseReference) {
+                    view?.onEditSuccess()
+                }
+
+            })
+        }
+    }
 }

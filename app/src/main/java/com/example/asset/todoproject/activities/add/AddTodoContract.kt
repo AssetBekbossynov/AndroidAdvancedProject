@@ -8,10 +8,13 @@ interface AddTodoContract {
 
     interface View: BaseView<Presenter>{
         fun onAddSuccess()
+        fun onEditSuccess()
+        fun onEditError(msg: String)
         fun onAddError(msg: String)
     }
 
     interface Presenter: BasePresenter<View>{
         fun add(todo: Todo)
+        fun edit(todo: Todo, position: Int)
     }
 }

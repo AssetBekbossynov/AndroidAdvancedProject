@@ -11,7 +11,7 @@ import kotlinx.android.synthetic.main.item_list.view.*
 import java.text.SimpleDateFormat
 import java.util.*
 
-class TodoAdapter(var context: Context, var list: ArrayList<Todo>): RecyclerView.Adapter<TodoAdapter.ViewHolder>() {
+class TodoAdapter(var context: Context, var list: ArrayList<Todo>, var listener: ButtonPressedListener): RecyclerView.Adapter<TodoAdapter.ViewHolder>() {
 
     val dateFormat = SimpleDateFormat("dd/MM/yyyy")
 
@@ -27,12 +27,22 @@ class TodoAdapter(var context: Context, var list: ArrayList<Todo>): RecyclerView
         return list.size
     }
 
+    fun getItemById(position: Int): Todo{
+        return list.get(position)
+    }
+
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.itemView.todoTitle.text = list.get(position).description
         val date = Date(list.get(position).planDate)
         holder.itemView.date.text = dateFormat.format(date)
         holder.itemView.todoTag.text = list.get(position).tagId
         holder.itemView.priority.text = list.get(position).priority
+        holder.itemView.delete.setOnClickListener {
+            listener.onCLick("delete", position)
+        }
+        holder.itemView.edit.setOnClickListener {
+            listener.onCLick("edit", position)
+        }
     }
 
     class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView)

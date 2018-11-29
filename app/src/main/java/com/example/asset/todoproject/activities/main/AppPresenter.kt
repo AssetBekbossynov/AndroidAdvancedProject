@@ -19,26 +19,19 @@ class AppPresenter(override var view: AppContract.View?) : AppContract.Presenter
             }
 
             override fun onDataChange(p0: DataSnapshot) {
-                Logger.msg("todos " + p0.getValue())
-
                 if (p0.getValue() == null){
                     value = ArrayList<Todo>()
                 }else{
                     val t = object : GenericTypeIndicator<ArrayList<Todo>>() {}
                     value = p0.getValue(t)
                 }
-                value!!.get(0).
                 view?.onGetDataSuccess(value!!)
             }
 
         })
     }
 
-    override fun delete(id: String) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
-    override fun edit(id: String) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun delete(userId: String, id: Int) {
+        ref.child(userId).child(id.toString()).removeValue()
     }
 }
