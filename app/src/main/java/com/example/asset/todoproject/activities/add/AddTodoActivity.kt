@@ -28,6 +28,8 @@ class AddTodoActivity : AppCompatActivity(), AddTodoContract.View {
 
     val dateFormat:SimpleDateFormat = SimpleDateFormat("dd/MM/yyyy")
 
+    val mAuht = FirebaseAuth.getInstance()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_todo)
@@ -78,7 +80,7 @@ class AddTodoActivity : AppCompatActivity(), AddTodoContract.View {
                     if (currentDate.before(date)){
                         Toast.makeText(this, "date should be after current date", Toast.LENGTH_SHORT).show()
                     }else{
-                        var todo = Todo("userid2",
+                        var todo = Todo(mAuht.currentUser?.uid!!,
                                 description.text.toString(), currentDate.toString(),
                                 date.toString(), todoPriority!!, todoTag!!)
                         presenter.add(todo)
@@ -94,6 +96,7 @@ class AddTodoActivity : AppCompatActivity(), AddTodoContract.View {
     }
 
     override fun onAddSuccess() {
+        finish()
         Logger.msg("successfully added")
     }
 

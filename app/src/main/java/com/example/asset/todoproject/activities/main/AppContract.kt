@@ -2,11 +2,12 @@ package com.example.asset.todoproject.activities.main
 
 import com.example.asset.todoproject.activities.common.BasePresenter
 import com.example.asset.todoproject.activities.common.BaseView
+import com.example.asset.todoproject.models.Todo
 
 interface AppContract {
 
     interface View: BaseView<Presenter>{
-        fun onGetDataSuccess()
+        fun onGetDataSuccess(list: ArrayList<Todo>)
         fun onGetDataError()
         fun onDeleteSuccess()
         fun onEditSuccess()
