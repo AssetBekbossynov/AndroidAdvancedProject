@@ -11,7 +11,7 @@ class AddTodoPresenter(override var view: AddTodoContract.View?) : AddTodoContra
     val ref = myDB.reference.child("todos")
 
     override fun add(todo: Todo) {
-        var list: MutableList<Todo>
+        var list: MutableList<Todo>?
 
         ref.child(todo.userId).addListenerForSingleValueEvent(object : ValueEventListener{
             override fun onCancelled(p0: DatabaseError) {
@@ -19,9 +19,13 @@ class AddTodoPresenter(override var view: AddTodoContract.View?) : AddTodoContra
             }
 
             override fun onDataChange(p0: DataSnapshot) {
-                list = p0.getValue() as MutableList<Todo>
-                Logger.msg("data " + list)
-                list.add(todo)
+                Logger.msg("data " + p0.getValue())
+                if (p0.getValue() == null){
+                    list = ArrayList<Todo>()
+                }else{
+                    list = p0.getValue() as MutableList<Todo>
+                }
+                list!!.add(todo)
                 ref.child(todo.userId).setValue(list, object: DatabaseReference.CompletionListener{
                     override fun onComplete(p0: DatabaseError?, p1: DatabaseReference) {
                         if (p0 != null) {
